@@ -8,7 +8,6 @@ import 'package:flutter_news/models/article.dart';
 import 'package:flutter_news/models/top_headline_result.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -33,8 +32,10 @@ class HomeScreenState extends State<HomeScreen> {
             if (snapshot.hasData) {
               _topHeadlineResult = snapshot.data;
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
+                  Container(
+                    height: 350,
                     child: TopHeadlines(
                       articles: _topHeadlineResult.articles,
                     ),
@@ -61,6 +62,7 @@ class TopHeadlines extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      scrollDirection: Axis.horizontal,
       itemCount: articles.length,
       itemBuilder: (BuildContext context, int index) {
         return TopHeadlineItem(
@@ -73,6 +75,8 @@ class TopHeadlines extends StatelessWidget {
 
 class TopHeadlineItem extends StatelessWidget {
   final Article article;
+  final double itemHeight = 250;
+  final double itemWidth = 250;
 
   const TopHeadlineItem({
     Key key,
@@ -82,62 +86,91 @@ class TopHeadlineItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
-      decoration: BoxDecoration(
-        image: article.urlToImage != null
-            ? DecorationImage(
-                fit: BoxFit.fill,
-                image: NetworkImage(article.urlToImage),
-              )
-            : null,
+      height: itemHeight,
+      width: itemWidth,
+      margin: EdgeInsets.only(
+        left: 8,
+        right: 8,
+        top: 30,
+        bottom: 70,
       ),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: FractionalOffset.topCenter,
-                end: FractionalOffset.bottomCenter,
-                colors: [
-                  Colors.grey.withOpacity(0.0),
-                  Colors.black87,
-                ],
-                stops: [0.0, 1.0],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 16,
-                bottom: 16,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Text(
-                    article.title,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    timeago.format(DateTime.parse(article.publishedAt)),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey[200],
+            blurRadius: 15,
+            spreadRadius: 15,
+            offset: Offset(0.0, 0.75),
+          )
         ],
+      ),
+      child: ClipRRect(
+        clipBehavior: Clip.antiAlias,
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: itemHeight / 2,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter,
+                  colors: [
+                    Colors.grey.withOpacity(0.0),
+                    Colors.black87,
+                  ],
+                  stops: [0.0, 1.0],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: article.urlToImage != null
+                  ? Container(
+                      height: itemHeight / 2,
+                      width: itemWidth,
+                      child: Image.network(
+                        article.urlToImage,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : Container(),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Container(
+                height: itemHeight / 2,
+                color: Colors.white,
+                padding: EdgeInsets.only(
+                  left: 16,
+                  bottom: 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      article.title,
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      timeago.format(DateTime.parse(article.publishedAt)),
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
