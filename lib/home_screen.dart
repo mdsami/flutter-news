@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/api/api.dart';
 import 'package:flutter_news/models/article.dart';
 import 'package:flutter_news/models/top_headline_result.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -81,7 +82,7 @@ class TopHeadlineItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 250,
       decoration: BoxDecoration(
         image: article.urlToImage != null
             ? DecorationImage(
@@ -90,25 +91,53 @@ class TopHeadlineItem extends StatelessWidget {
               )
             : null,
       ),
-      child: ClipRRect(
-        clipBehavior: Clip.antiAlias,
-        borderRadius: BorderRadius.all(
-          Radius.circular(16),
-        ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            article.urlToImage != null
-                ? FittedBox(
-                    fit: BoxFit.fill,
-                    child: Image.network(
-                      article.urlToImage,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: FractionalOffset.topCenter,
+                end: FractionalOffset.bottomCenter,
+                colors: [
+                  Colors.grey.withOpacity(0.0),
+                  Colors.black87,
+                ],
+                stops: [0.0, 1.0],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+                bottom: 16,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    article.title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                  )
-                : Container(),
-            Text(article.title),
-          ],
-        ),
+                  ),
+                  Text(
+                    timeago.format(DateTime.parse(article.publishedAt)),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
