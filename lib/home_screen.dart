@@ -4,7 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_news/api/api.dart';
+import 'package:flutter_news/models/article.dart';
 import 'package:flutter_news/models/top_headline_result.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -32,11 +34,8 @@ class HomeScreenState extends State<HomeScreen> {
               return Column(
                 children: <Widget>[
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: _topHeadlineResult.articles.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Text(_topHeadlineResult.articles[index].title);
-                      },
+                    child: TopHeadlines(
+                      articles: _topHeadlineResult.articles,
                     ),
                   )
                 ],
@@ -45,6 +44,58 @@ class HomeScreenState extends State<HomeScreen> {
               return CircularProgressIndicator();
             }
           },
+        ),
+      ),
+    );
+  }
+}
+
+class TopHeadlines extends StatelessWidget {
+  final List<Article> articles;
+
+  const TopHeadlines({
+    Key key,
+    @required this.articles,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: articles.length,
+      itemBuilder: (BuildContext context, int index) {
+        return TopHeadlineItem(
+          article: articles[index],
+        );
+      },
+    );
+  }
+}
+
+class TopHeadlineItem extends StatelessWidget {
+  final Article article;
+
+  const TopHeadlineItem({
+    Key key,
+    @required this.article,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ClipRRect(
+        clipBehavior: Clip.antiAlias,
+        borderRadius: BorderRadius.all(
+          Radius.circular(16),
+        ),
+        child: Stack(
+          children: <Widget>[
+            article.urlToImage != null
+                ? Container(
+                    height: 150,
+                    child: Image.network(article.urlToImage),
+                  )
+                : Container(),
+            Text(article.title),
+          ],
         ),
       ),
     );

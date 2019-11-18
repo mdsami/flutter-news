@@ -7,7 +7,7 @@ import 'package:flutter_news/models/article.dart';
 class TopHeadlineResult {
   String status;
   int totalResults;
-  List<Articles> articles;
+  List<Article> articles;
 
   TopHeadlineResult({this.status, this.totalResults, this.articles});
 
@@ -15,9 +15,9 @@ class TopHeadlineResult {
     status = json['status'];
     totalResults = json['totalResults'];
     if (json['articles'] != null) {
-      articles = new List<Articles>();
+      articles = new List<Article>();
       json['articles'].forEach((v) {
-        articles.add(new Articles.fromJson(v));
+        articles.add(new Article.fromJson(v));
       });
     }
   }

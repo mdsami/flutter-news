@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-class Articles {
+class Article {
   Source source;
   String author;
   String title;
@@ -12,7 +12,7 @@ class Articles {
   String publishedAt;
   String content;
 
-  Articles({
+  Article({
     this.source,
     this.author,
     this.title,
@@ -23,7 +23,7 @@ class Articles {
     this.content,
   });
 
-  Articles.fromJson(Map<String, dynamic> json) {
+  Article.fromJson(Map<String, dynamic> json) {
     source =
         json['source'] != null ? new Source.fromJson(json['source']) : null;
     author = json['author'] ?? '';
