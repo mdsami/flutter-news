@@ -100,38 +100,35 @@ class FeaturedArticleItem extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              height: itemHeight * 0.30,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter,
+                  colors: [
+                    Colors.black87,
+                    Colors.grey.withOpacity(0.0),
+                  ],
+                  stops: [0.0, 1.0],
+                ),
+              ),
+            ),
             Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                padding: EdgeInsets.only(
-                  top: 16,
-                  left: 16,
-                  bottom: 16,
-                ),
+                padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text(
                       article.title,
-                      maxLines: 2,
+                      maxLines: 3,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: 8,
-                      ),
-                      child: Text(
-                        "${article.source.name}",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
                       ),
                     ),
                     Text(
@@ -143,6 +140,20 @@ class FeaturedArticleItem extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                padding: EdgeInsets.only(top: 16, left: 16),
+                child: Text(
+                  "${article.source.name}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
