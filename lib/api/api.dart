@@ -10,9 +10,10 @@ import 'dart:convert' as convert;
 class Api {
   var client = new http.Client();
   final baseUrl = "https://newsapi.org";
+  final apiVersion = "v2";
 
   // Await the http get response, then decode the json-formatted responce.
-  Future<TopHeadlineResult> _getTopTrendingHeadlines(
+  Future<TopHeadlineResult> getTopTrendingHeadlines(
     String country,
     String category,
   ) async {
@@ -24,14 +25,10 @@ class Api {
     };
 
     // Build URI along with the API path and query params
-    var uri = Uri.https(
-      baseUrl,
-      '/top-headlines',
-      queryParamters,
-    );
+    var uri = Uri.parse("$baseUrl/$apiVersion/top-headlines");
 
     // Request data to server
-    var response = await http.get(uri);
+    var response = await http.get(uri.replace(queryParameters: queryParamters));
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
       var itemCount = jsonResponse['totalItems'];
