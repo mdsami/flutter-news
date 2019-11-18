@@ -113,7 +113,6 @@ class HomeScreenState extends State<HomeScreen> {
                           children: <Widget>[
                             Container(
                               padding: EdgeInsets.only(
-                                top: 16,
                                 left: 16,
                               ),
                               child: SectionHeaderWidget(title: "Business"),
