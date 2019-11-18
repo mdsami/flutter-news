@@ -23,38 +23,106 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: FutureBuilder(
-            future: _api.getTopTrendingHeadlines("PH", "business"),
-            builder: (
-              BuildContext context,
-              AsyncSnapshot<TopHeadlineResult> snapshot,
-            ) {
-              if (snapshot.hasData) {
-                _topHeadlineResult = snapshot.data;
-                return Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(
-                          top: 48,
-                          left: 16,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "Flutter News",
+            style: TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.share,
+                color: Colors.black87,
+              ),
+              onPressed: () {
+                // TODO
+              },
+            )
+          ],
+        ),
+        body: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                FutureBuilder(
+                  future: _api.getTopTrendingHeadlines("PH", "business"),
+                  builder: (
+                    BuildContext context,
+                    AsyncSnapshot<TopHeadlineResult> snapshot,
+                  ) {
+                    if (snapshot.hasData) {
+                      _topHeadlineResult = snapshot.data;
+                      return Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(
+                                top: 16,
+                                left: 16,
+                              ),
+                              child: SectionHeaderWidget(title: "Business"),
+                            ),
+                            TopHeadlines(
+                              articles: _topHeadlineResult.articles,
+                            ),
+                          ],
                         ),
-                        child:
-                            SectionHeaderWidget(title: "Trending in Business"),
-                      ),
-                      TopHeadlines(
-                        articles: _topHeadlineResult.articles,
-                      ),
-                    ],
-                  ),
-                );
-              } else {
-                return CircularProgressIndicator();
-              }
-            },
+                      );
+                    } else {
+                      return Container(
+                        height: 300,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                  },
+                ),
+                FutureBuilder(
+                  future: _api.getTopTrendingHeadlines("PH", "technology"),
+                  builder: (
+                    BuildContext context,
+                    AsyncSnapshot<TopHeadlineResult> snapshot,
+                  ) {
+                    if (snapshot.hasData) {
+                      _topHeadlineResult = snapshot.data;
+                      return Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(
+                                left: 16,
+                              ),
+                              child: SectionHeaderWidget(title: "Technology"),
+                            ),
+                            TopHeadlines(
+                              articles: _topHeadlineResult.articles,
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 300,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

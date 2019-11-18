@@ -16,7 +16,7 @@ class TopHeadlines extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 320,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: articles.length,
@@ -36,8 +36,8 @@ class TopHeadlines extends StatelessWidget {
 
 class TopHeadlineItem extends StatelessWidget {
   final Article article;
-  final double itemHeight = 230;
-  final double itemWidth = 230;
+  final double itemHeight = 240;
+  final double itemWidth = 240;
 
   const TopHeadlineItem({
     Key key,
@@ -52,7 +52,7 @@ class TopHeadlineItem extends StatelessWidget {
       margin: EdgeInsets.only(
         left: 8,
         right: 8,
-        top: 20,
+        top: 30,
         bottom: 50,
       ),
       decoration: BoxDecoration(
