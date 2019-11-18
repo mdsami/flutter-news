@@ -81,17 +81,29 @@ class TopHeadlineItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        image: article.urlToImage != null
+            ? DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage(article.urlToImage),
+              )
+            : null,
+      ),
       child: ClipRRect(
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.all(
           Radius.circular(16),
         ),
         child: Stack(
+          alignment: Alignment.center,
           children: <Widget>[
             article.urlToImage != null
-                ? Container(
-                    height: 150,
-                    child: Image.network(article.urlToImage),
+                ? FittedBox(
+                    fit: BoxFit.fill,
+                    child: Image.network(
+                      article.urlToImage,
+                    ),
                   )
                 : Container(),
             Text(article.title),
