@@ -2,9 +2,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-class HeadlineNews {
+class Articles {
   Source source;
-  Null author;
+  String author;
   String title;
   String description;
   String url;
@@ -12,7 +12,7 @@ class HeadlineNews {
   String publishedAt;
   String content;
 
-  HeadlineNews({
+  Articles({
     this.source,
     this.author,
     this.title,
@@ -23,10 +23,10 @@ class HeadlineNews {
     this.content,
   });
 
-  HeadlineNews.fromJson(Map<String, dynamic> json) {
+  Articles.fromJson(Map<String, dynamic> json) {
     source =
         json['source'] != null ? new Source.fromJson(json['source']) : null;
-    author = json['author'];
+    author = json['author'] ?? '';
     title = json['title'];
     description = json['description'];
     url = json['url'];
@@ -52,7 +52,7 @@ class HeadlineNews {
 }
 
 class Source {
-  Null id;
+  String id;
   String name;
 
   Source({
@@ -61,7 +61,7 @@ class Source {
   });
 
   Source.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'] ?? '';
     name = json['name'];
   }
 

@@ -15,17 +15,20 @@ The said event was hosted by DSC Loyola in partnership with [Flutter Philippines
 
 1. Write and run your very first Flutter App!
 
-2. Learn how to request data from the internet.
+2. Import 3rd party dependencies in your project.
+   - [Package Manager] [pub.dev](https://pub.dev)
+
+3. Learn how to request data from the internet.
    - [API] [NewsAPI.org](https://newsapi.org)
    - [Package] [http](https://pub.dev/packages/http)
 
-3. Be able to serialize and deserialize incoming JSON payload
+4. Be able to serialize and deserialize incoming JSON payload
      - [Tool] [json_to_dart](https://javiercbk.github.io/json_to_dart/)
 
-4. Visualize Implicitly Animated Widgets
+5. Visualize Implicitly Animated Widgets
    - [Blog] [Flutter Animation: Easy Way of Learning the Flutter Implicitly Animated Widgets](https://medium.com/flutter-community/flutter-animation-easy-way-of-learning-the-flutter-implicit-animation-widgets-pt-1-712f2b78f6b5)
 
-5. Have fun!
+6. Have fun!
 
 ### Project
 
@@ -67,9 +70,9 @@ TBD
 
 ### Support
 
-I would highly appreciate if we connect on Twitter or Github, and discuss things over a cup of coffee ☕.
-* [@joshuamdeguzman](https://twitter.com/joshuamdeguzman)
-* [@joshuadeguzman](https://github.com/joshuadeguzman)
+I would highly appreciate if we connect on Twitter or Github, and discuss Fluttery things over a cup of coffee ☕.
+* Twitter: [@joshuamdeguzman](https://twitter.com/joshuamdeguzman)
+* Github: [@joshuadeguzman](https://github.com/joshuadeguzman)
 
 ### License
 
