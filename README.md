@@ -1,16 +1,17 @@
-# flutter_news
+## flutter_news
 
-A new Flutter project.
+A demonstrable Flutter application that utilizes NewsAPI.org's API.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+### About
 
-A few resources to get you started if this is your first Flutter project:
+This sample app serves as an instructional material for someone who's giving an introductory talk or workshop to Flutter.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This app was used for Mobile Development with Flutter Workshop at Ateneo de Manila University on November 20, 2019.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The said event was hosted by DSC Loyola in partnership with [Flutter Philippines](https://flutter.ph).
+
+### Key Takeaways
+
+- Data Serialization and Deserialization
+  - [json_to_dart](https://javiercbk.github.io/json_to_dart/)
