@@ -58,9 +58,9 @@ class TopHeadlineItem extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[200],
-            blurRadius: 15,
-            spreadRadius: 15,
+            color: Colors.grey[300],
+            blurRadius: 20,
+            spreadRadius: 10,
             offset: Offset(0.0, 0.75),
           )
         ],
