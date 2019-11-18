@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/api/api.dart';
 import 'package:flutter_news/models/top_headline_result.dart';
+import 'package:flutter_news/widgets/featured_articles.dart';
 import 'package:flutter_news/widgets/section_header_widget.dart';
 import 'package:flutter_news/widgets/top_headlines_widget.dart';
 
@@ -17,7 +18,17 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   final Api _api = Api();
-  TopHeadlineResult _topHeadlineResult;
+  TopHeadlineResult _topHeadlineResultFeatured;
+  TopHeadlineResult _topHeadlineResultBusiness;
+  TopHeadlineResult _topHeadlineResultTech;
+  
+  PageController _featuredPageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _featuredPageController = PageController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +62,50 @@ class HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: <Widget>[
                 FutureBuilder(
+                  future: _api.getTopTrendingHeadlines("PH", "general"),
+                  builder: (
+                    BuildContext context,
+                    AsyncSnapshot<TopHeadlineResult> snapshot,
+                  ) {
+                    if (snapshot.hasData) {
+                      _topHeadlineResultFeatured = snapshot.data;
+                      return Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(
+                                top: 16,
+                                left: 16,
+                              ),
+                              child: SectionHeaderWidget(title: "Featured"),
+                            ),
+                            FeaturedArticles(
+                              pageController: _featuredPageController,
+                              articles: _topHeadlineResultFeatured.articles,
+                            ),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        height: 200,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                  },
+                ),
+                FutureBuilder(
                   future: _api.getTopTrendingHeadlines("PH", "business"),
                   builder: (
                     BuildContext context,
                     AsyncSnapshot<TopHeadlineResult> snapshot,
                   ) {
                     if (snapshot.hasData) {
-                      _topHeadlineResult = snapshot.data;
+                      _topHeadlineResultBusiness = snapshot.data;
                       return Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -71,7 +119,7 @@ class HomeScreenState extends State<HomeScreen> {
                               child: SectionHeaderWidget(title: "Business"),
                             ),
                             TopHeadlines(
-                              articles: _topHeadlineResult.articles,
+                              articles: _topHeadlineResultBusiness.articles,
                             ),
                           ],
                         ),
@@ -93,7 +141,7 @@ class HomeScreenState extends State<HomeScreen> {
                     AsyncSnapshot<TopHeadlineResult> snapshot,
                   ) {
                     if (snapshot.hasData) {
-                      _topHeadlineResult = snapshot.data;
+                      _topHeadlineResultTech = snapshot.data;
                       return Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -106,7 +154,7 @@ class HomeScreenState extends State<HomeScreen> {
                               child: SectionHeaderWidget(title: "Technology"),
                             ),
                             TopHeadlines(
-                              articles: _topHeadlineResult.articles,
+                              articles: _topHeadlineResultTech.articles,
                             ),
                           ],
                         ),

@@ -6,26 +6,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/models/article.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class TopHeadlines extends StatelessWidget {
+class FeaturedArticles extends StatelessWidget {
   final List<Article> articles;
+  final PageController pageController;
 
-  const TopHeadlines({
+  const FeaturedArticles({
     Key key,
+    @required this.pageController,
     @required this.articles,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 320,
-      child: ListView.builder(
+      height: 350,
+      child: PageView.builder(
+        controller: pageController,
         scrollDirection: Axis.horizontal,
         itemCount: articles.length,
-        padding: EdgeInsets.only(
-          left: 8,
-          right: 8,
-        ),
+        pageSnapping: true,
         itemBuilder: (BuildContext context, int index) {
-          return TopHeadlineItem(
+          return FeaturedArticleItem(
             article: articles[index],
           );
         },
@@ -34,12 +34,12 @@ class TopHeadlines extends StatelessWidget {
   }
 }
 
-class TopHeadlineItem extends StatelessWidget {
+class FeaturedArticleItem extends StatelessWidget {
   final Article article;
-  final double itemHeight = 240;
+  final double itemHeight = 300;
   final double itemWidth = 240;
 
-  const TopHeadlineItem({
+  const FeaturedArticleItem({
     Key key,
     @required this.article,
   }) : super(key: key);
@@ -50,17 +50,17 @@ class TopHeadlineItem extends StatelessWidget {
       height: itemHeight,
       width: itemWidth,
       margin: EdgeInsets.only(
-        left: 8,
-        right: 8,
+        left: 32,
+        right: 32,
         top: 30,
         bottom: 50,
       ),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[200],
-            blurRadius: 15,
-            spreadRadius: 15,
+            color: Colors.grey[600],
+            blurRadius: 25,
+            spreadRadius: 5,
             offset: Offset(0.0, 0.75),
           )
         ],
@@ -68,41 +68,41 @@ class TopHeadlineItem extends StatelessWidget {
       child: ClipRRect(
         clipBehavior: Clip.antiAlias,
         borderRadius: BorderRadius.all(Radius.circular(12)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                article.urlToImage != null
-                    ? Container(
-                        height: itemHeight / 2,
-                        width: itemWidth,
-                        child: Image.network(
-                          article.urlToImage,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    : Container(),
-                Container(
-                  height: itemHeight / 2,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter,
-                      colors: [
-                        Colors.grey.withOpacity(0.0),
-                        Colors.black45,
-                      ],
-                      stops: [0.0, 1.0],
+            article.urlToImage != null
+                ? Container(
+                    height: 350,
+                    width: 350,
+                    child: Image.network(
+                      article.urlToImage,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : Container(
+                    height: 350,
+                    width: 350,
+                    color: Colors.black,
+                    child: Center(
+                      child: Icon(Icons.photo_album),
                     ),
                   ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter,
+                  colors: [
+                    Colors.grey.withOpacity(0.0),
+                    Colors.black87,
+                  ],
+                  stops: [0.0, 1.0],
                 ),
-              ],
+              ),
             ),
-            Expanded(
+            Align(
+              alignment: Alignment.bottomLeft,
               child: Container(
-                color: Colors.white,
                 padding: EdgeInsets.only(
                   top: 16,
                   left: 16,
@@ -110,13 +110,13 @@ class TopHeadlineItem extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text(
                       article.title,
                       maxLines: 2,
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -128,7 +128,7 @@ class TopHeadlineItem extends StatelessWidget {
                       child: Text(
                         "${article.source.name}",
                         style: TextStyle(
-                          color: Colors.black54,
+                          color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -137,7 +137,7 @@ class TopHeadlineItem extends StatelessWidget {
                     Text(
                       timeago.format(DateTime.parse(article.publishedAt)),
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: Colors.white,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
