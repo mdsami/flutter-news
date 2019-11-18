@@ -21,7 +21,7 @@ class HomeScreenState extends State<HomeScreen> {
   TopHeadlineResult _topHeadlineResultFeatured;
   TopHeadlineResult _topHeadlineResultBusiness;
   TopHeadlineResult _topHeadlineResultTech;
-  
+
   PageController _featuredPageController;
 
   @override
