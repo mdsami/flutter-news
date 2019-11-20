@@ -48,8 +48,17 @@ class HomeScreenState extends State<HomeScreen> {
           actions: <Widget>[
             IconButton(
               icon: Icon(
-                Icons.share,
-                color: Colors.black87,
+                Icons.home,
+                color: Colors.blue,
+              ),
+              onPressed: () {
+                // TODO
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.code,
+                color: Colors.red,
               ),
               onPressed: () {
                 // TODO
