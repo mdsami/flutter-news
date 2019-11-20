@@ -80,6 +80,18 @@ I would highly appreciate if we connect on Twitter or Github, and discuss Flutte
 * Twitter: [@joshuamdeguzman](https://twitter.com/joshuamdeguzman)
 * Github: [@joshuadeguzman](https://github.com/joshuadeguzman)
 
+## Cool stuff to try out!
+Awesome Flutter
+* https://github.com/Solido/awesome-flutter
+
+Flutter Showcase by 2dimensions
+* https://play.google.com/store/apps/details?id=com.two_dimensions.showcaseapp&hl=en_US
+* https://play.google.com/store/apps/details?id=com.two_dimensions.showcaseapp&hl=en_US
+
+Flutter Developer Quest
+* https://play.google.com/store/apps/details?id=dev.flutter.devRpg&hl=en
+* https://apps.apple.com/us/app/flutter-developer-quest/id1455994402
+
 ### License
 
 flutter-news is released under the BSD-3 Clause License. See [LICENSE](https://github.com/joshuadeguzman/flutter-news/blob/master/LICENSE) for details.
