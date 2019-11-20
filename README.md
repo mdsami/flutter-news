@@ -68,7 +68,7 @@ flutter run test/<TEST_FILE.dart>
 
 ### Slides
 
-TBD
+https://speakerdeck.com/joshuadeguzman/rapid-mobile-app-development-using-flutter
 
 ### Feedback
 
