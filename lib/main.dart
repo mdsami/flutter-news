@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_news/home_screen.dart';
+import 'package:flutter_news/home_screen_code.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        HomeScreenCode.routeName: (context) => HomeScreenCode(),
+      },
       home: HomeScreen(),
     );
   }

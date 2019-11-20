@@ -4,12 +4,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_news/api/api.dart';
+import 'package:flutter_news/home_screen_code.dart';
 import 'package:flutter_news/models/top_headline_result.dart';
 import 'package:flutter_news/widgets/featured_articles.dart';
 import 'package:flutter_news/widgets/section_header_widget.dart';
 import 'package:flutter_news/widgets/top_headlines_widget.dart';
 
 class HomeScreen extends StatefulWidget {
+  static String routeName = "/";
+
   @override
   State<StatefulWidget> createState() {
     return HomeScreenState();
@@ -58,10 +61,10 @@ class HomeScreenState extends State<HomeScreen> {
             IconButton(
               icon: Icon(
                 Icons.code,
-                color: Colors.red,
+                color: Colors.black87,
               ),
               onPressed: () {
-                // TODO
+                Navigator.pushReplacementNamed(context, HomeScreenCode.routeName);
               },
             )
           ],
