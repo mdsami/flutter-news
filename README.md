@@ -62,7 +62,9 @@ flutter run --verbose --profile
 
 #### 3. Tests
 
-TBD
+```
+flutter run test/<TEST_FILE.dart>
+```
 
 ### Slides
 
