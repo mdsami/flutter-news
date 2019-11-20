@@ -68,6 +68,10 @@ TBD
 
 TBD
 
+### Feedback
+
+If you are a participant of the workshop, feel free to submit a feedback [here](https://docs.google.com/forms/d/e/1FAIpQLSdMrqWiXNVhdsxlpkjIzBWJH3yBaSle67nShkctJ04vDJrtTg/viewform).
+
 ### Support
 
 I would highly appreciate if we connect on Twitter or Github, and discuss Fluttery things over a cup of coffee ☕.
