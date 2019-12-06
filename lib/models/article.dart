@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:flutter_news/models/source.dart';
+
 class Article {
   Source source;
   String author;
@@ -47,28 +49,6 @@ class Article {
     data['urlToImage'] = this.urlToImage;
     data['publishedAt'] = this.publishedAt;
     data['content'] = this.content;
-    return data;
-  }
-}
-
-class Source {
-  String id;
-  String name;
-
-  Source({
-    this.id,
-    this.name,
-  });
-
-  Source.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? '';
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
     return data;
   }
 }
