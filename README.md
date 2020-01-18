@@ -2,7 +2,6 @@
 
 A demonstrable Flutter application that utilizes NewsAPI.org's API.
 
-
 ### About
 
 This sample app serves as an instructional material for someone who's giving an introductory talk or workshop to Flutter.
@@ -69,10 +68,6 @@ flutter run test/<TEST_FILE.dart>
 ### Slides
 
 https://speakerdeck.com/joshuadeguzman/rapid-mobile-app-development-using-flutter
-
-### Feedback
-
-If you are a participant of the workshop, feel free to submit a feedback [here](https://docs.google.com/forms/d/e/1FAIpQLSdMrqWiXNVhdsxlpkjIzBWJH3yBaSle67nShkctJ04vDJrtTg/viewform).
 
 ### Support
 
